@@ -59,6 +59,11 @@
         --bs-link-color-rgb: 140, 196, 255;
         --bs-link-hover-color: #b3d8ff;
         --bs-link-hover-color-rgb: 179, 216, 255;
+        /* 경고 상자(alert-danger)의 다크 값. Bootstrap 은 이 토큰들을
+           [data-bs-theme=dark] 에만 정의하므로 직접 넣는다. */
+        --bs-danger-text-emphasis: #ea868f;
+        --bs-danger-bg-subtle: #2c0b0e;
+        --bs-danger-border-subtle: #842029;
         --bs-code-color: #f0a8c0;
         --bs-table-color: #e6edf5;
         --bs-table-bg: transparent;
@@ -238,7 +243,6 @@
           <tr><th scope="row">EAP 방식</th><td>PEAP</td></tr>
           <tr><th scope="row">2단계 인증</th><td>MSCHAPv2</td></tr>
           <tr><th scope="row">CA 인증서</th><td><a href="assets/certs/ca.pem" download>기관 CA 인증서</a> 또는 시스템 인증서</td></tr>
-          <!-- 서버 인증서의 CN 값입니다. DNS 에 등록된 도메인일 필요는 없습니다. -->
           <tr><th scope="row">도메인</th><td><code>rad.eduroam.example.re.kr</code></td></tr>
           <tr><th scope="row">ID</th><td><code>아이디@example.re.kr</code></td></tr>
           <tr><th scope="row">익명 ID</th><td><code>anonymous@example.re.kr</code></td></tr>
@@ -248,6 +252,12 @@
 
     <h4>인증서 정보</h4>
     <p class="text-body-secondary">최초 접속 시 표시되는 인증서가 아래와 일치하는지 확인합니다. 일치하지 않으면 연결하지 말고 문의처에 알려 주시기 바랍니다.</p>
+    <div class="alert alert-danger" role="alert">
+      <strong>CA 인증서를 설치하지 않거나 인증서 지문을 확인하지 않고 접속하지 마십시오.</strong>
+      확인을 건너뛰면 <strong>eduroam</strong>이라는 같은 이름으로 위장한 가짜 접속점에 접속할 수 있고,
+      그 경우 입력한 아이디와 비밀번호가 공격자에게 그대로 넘어갑니다.
+      위 두 단계를 거치지 않고 접속하는 것에 대한 책임은 이용자 본인에게 있습니다.
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered align-middle cert-table">
         <tbody>

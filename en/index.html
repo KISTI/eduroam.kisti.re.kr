@@ -59,6 +59,11 @@
         --bs-link-color-rgb: 140, 196, 255;
         --bs-link-hover-color: #b3d8ff;
         --bs-link-hover-color-rgb: 179, 216, 255;
+        /* 경고 상자(alert-danger)의 다크 값. Bootstrap 은 이 토큰들을
+           [data-bs-theme=dark] 에만 정의하므로 직접 넣는다. */
+        --bs-danger-text-emphasis: #ea868f;
+        --bs-danger-bg-subtle: #2c0b0e;
+        --bs-danger-border-subtle: #842029;
         --bs-code-color: #f0a8c0;
         --bs-table-color: #e6edf5;
         --bs-table-bg: transparent;
@@ -238,7 +243,6 @@
           <tr><th scope="row">EAP method</th><td>PEAP</td></tr>
           <tr><th scope="row">Phase 2</th><td>MSCHAPv2</td></tr>
           <tr><th scope="row">CA certificate</th><td><a href="../assets/certs/ca.pem" download>Institution CA certificate</a> or system certificates</td></tr>
-          <!-- 서버 인증서의 CN 값입니다. DNS 에 등록된 도메인일 필요는 없습니다. -->
           <tr><th scope="row">Domain</th><td><code>rad.eduroam.example.re.kr</code></td></tr>
           <tr><th scope="row">Identity</th><td><code>username@example.re.kr</code></td></tr>
           <tr><th scope="row">Anonymous identity</th><td><code>anonymous@example.re.kr</code></td></tr>
@@ -248,6 +252,12 @@
 
     <h4>Certificate details</h4>
     <p class="text-body-secondary">Check that the certificate shown on first connection matches the values below. If it does not match, do not connect and report it to the contact below.</p>
+    <div class="alert alert-danger" role="alert">
+      <strong>Do not connect without installing the CA certificate and checking the certificate fingerprint.</strong>
+      If you skip these checks you may connect to a rogue access point broadcasting the same name,
+      <strong>eduroam</strong>, and the username and password you enter are handed straight to the attacker.
+      Connecting without performing both checks is at your own risk.
+    </div>
     <div class="table-responsive">
       <table class="table table-bordered align-middle cert-table">
         <tbody>
