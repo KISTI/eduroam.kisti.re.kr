@@ -167,6 +167,38 @@ DNS 전파 후 GitHub가 인증서를 발급하면 **Settings → Pages**에서 
 | `CLAUDE.md` | AI 유지보수 가이드 |
 
 
-## 7. 문의
+## 7. 에듀롬 인증서 권장 규격
+
+### 7.1. RADIUS CA (사설 루트) 인증서 권장 항목
+
+| 항목 | 권장 |
+|---|---|
+| 유효기간 | 10~20년 |
+| `basicConstraints` | `critical, CA:TRUE, pathlen:0` |
+| `keyUsage` | `critical, keyCertSign, cRLSign` |
+| `extendedKeyUsage` | 넣지 않음 |
+| 키 | RSA 4096 또는 EC P-384 |
+| 서명 | SHA-256 |
+
+### 7.2. RADIUS 서버 인증서 권장 항목
+
+| 항목 | 권장 |
+|---|---|
+| 유효기간 | 2~5년 |
+| CN | FQDN (와일드카드 금지), DNS에 등록 필요 없음 |
+| `subjectAltName` | `DNS:` CN과 동일 |
+| `basicConstraints` | `critical, CA:FALSE` |
+| `keyUsage` | `critical, digitalSignature, keyEncipherment` |
+| `extendedKeyUsage` | `serverAuth` 필수 |
+| 키 | RSA 2048 이상 |
+| 서명 | SHA-256 |
+
+* `serverAuth`는 Windows가 없으면 거부하고, `basicConstraints`는 없으면 macOS에서 문제가 보고된 항목이라 둘 다 빼면 안 됩니다. SAN(subjectAltName)은 Windows·Android가 이름 대조에 쓰므로 CN과 반드시 같아야 합니다.
+* CA가 그대로면 서버 인증서 갱신은 단말에 아무 영향이 없습니다.
+
+출처: [GÉANT Best Practice — Server Certificate Practices in eduroam](https://archive.geant.org/projects/gn3/geant/services/cbp/Documents/cbp-33_server-certificate-practices-in-eduroam.pdf), [GÉANT wiki — EAP Server Certificate considerations](https://wiki.geant.org/spaces/H2eduroam/pages/121346323/EAP+Server+Certificate+considerations), [Jisc — Certificates in eduroam](https://community.jisc.ac.uk/library/network-and-technology-service-docs/certificates-eduroam/1000)
+
+
+## 8. 문의
 
 대한민국 에듀롬 공식 웹사이트 : https://eduroam.kreonet.net
