@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>eduroam at Example Research Institute</title>
+
+  <!-- 기관 정보 (README의 '수정할 값' 참고) -->
+  <meta name="description" content="How to connect to eduroam Wi-Fi at Example Research Institute, for members and visitors.">
+  <link rel="canonical" href="https://eduroam-kr.github.io/site-template/en/">
+  <link rel="alternate" hreflang="ko" href="https://eduroam-kr.github.io/site-template/">
+  <link rel="alternate" hreflang="en" href="https://eduroam-kr.github.io/site-template/en/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="eduroam at Example Research Institute">
+  <meta property="og:description" content="Connect to eduroam Wi-Fi worldwide with your Example Research Institute account.">
+  <meta property="og:url" content="https://eduroam-kr.github.io/site-template/en/">
+  <meta property="og:image" content="https://eduroam-kr.github.io/site-template/assets/icons/eduroam.png">
+  <meta property="og:site_name" content="eduroam at Example Research Institute">
+  <meta property="og:locale" content="en_US">
+
+  <!-- 대한민국 eduroam 공통 메타 (수정 금지) -->
+  <meta name="copyright" content="eduroam® is a registered trademark of the GÉANT Association. eduroam service in the Republic of Korea is operated by KISTI/KREONET.">
+  <link rel="related" href="https://eduroam.kreonet.net" title="대한민국 eduroam 공식 웹사이트 (KISTI/KREONET 운영)">
+
+  <!-- 아이콘 -->
+  <link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/android-icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-icon-180x180.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+
+  <style>
+    /* Bootstrap 5.3 의 다크 팔레트는 [data-bs-theme=dark] 에만 적용된다. 이 사이트는
+       JavaScript 를 쓰지 않으므로, 시스템 설정에 맞춰 토큰만 직접 바꾼다. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bs-body-bg: #0f1a28;
+        --bs-body-bg-rgb: 15, 26, 40;
+        --bs-body-color: #e6edf5;
+        --bs-body-color-rgb: 230, 237, 245;
+        --bs-emphasis-color: #ffffff;
+        --bs-emphasis-color-rgb: 255, 255, 255;
+        --bs-secondary-color: rgba(230, 237, 245, 0.75);
+        --bs-secondary-bg: #172536;
+        --bs-secondary-bg-rgb: 23, 37, 54;
+        --bs-tertiary-bg: #172536;
+        /* Bootstrap 은 .bg-body-tertiary 와 링크 색을 -rgb 삼원색으로 조립한다.
+           hex 변수만 바꾸면 적용되지 않는다. */
+        --bs-tertiary-bg-rgb: 23, 37, 54;
+        --bs-border-color: #2a3b50;
+        --bs-link-color: #8cc4ff;
+        --bs-link-color-rgb: 140, 196, 255;
+        --bs-link-hover-color: #b3d8ff;
+        --bs-link-hover-color-rgb: 179, 216, 255;
+        --bs-code-color: #f0a8c0;
+        --bs-table-color: #e6edf5;
+        --bs-table-bg: transparent;
+        --bs-table-border-color: #2a3b50;
+        --bs-table-striped-color: #e6edf5;
+        --bs-table-striped-bg: rgba(255, 255, 255, 0.04);
+      }
+      .navbar { --bs-navbar-color: rgba(230, 237, 245, 0.75); --bs-navbar-hover-color: #8cc4ff; --bs-navbar-brand-color: #e6edf5; --bs-navbar-active-color: #e6edf5; }
+      .brand-logo, .brand-logo-inst { filter: invert(1) hue-rotate(180deg) brightness(1.2); }
+    }
+
+    body {
+      font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    /* 본문 폭. 표가 많아 너무 넓으면 읽기 어렵다. */
+    .wrap { max-width: 52rem; }
+
+    /* 스크롤해도 따라오는 머리글. 앵커로 이동할 때 제목이 가리지 않게 여백을 준다. */
+    .navbar { border-bottom: 1px solid var(--bs-border-color); }
+    /* 머리글 로고 두 장: eduroam 로고와 기관 로고. 기관 로고는 가로가 길어
+       좁은 화면에서 자리를 많이 먹으므로 폭 상한을 둔다. */
+    .brand-logo { height: 1.7rem; width: auto; }
+    .brand-logo-inst { height: 1.6rem; width: auto; max-width: 8rem; object-fit: contain; }
+    .brand-sep { width: 1px; align-self: stretch; margin: .35rem .1rem; background: var(--bs-border-color); }
+    @media (max-width: 26rem) { .brand-logo-inst { max-width: 6rem; } }
+
+    /* 메뉴 글자는 절대 쪼개지지 않게 한다. body 의 overflow-wrap: anywhere 가
+       좁은 화면에서 "소개" 를 소/개 로 끊어 놓는다. */
+    .navbar-nav .nav-link { white-space: nowrap; }
+    :target, section[id] { scroll-margin-top: 4.5rem; }
+
+    /* 제목 크기와 굵기는 Bootstrap 기본 스케일에 맡긴다. 일부만 덮어쓰면 덮지 않은
+       단계가 위 단계보다 커지고(h4 가 h2 보다 컸던 적이 있다), 좁은 화면에서
+       제목이 자동으로 줄어드는 동작(RFS)도 사라진다. 여기서는 간격과 구분선만 준다. */
+    h1 { letter-spacing: -0.02em; }
+    /* 단계별 크기 차가 작으므로(28 vs 24px) 위 여백으로 경계를 만든다.
+       h3 는 앞 h4 묶음이 끝났다는 신호라 여백을 넉넉히 준다. */
+    h2 { margin-top: 3.5rem; padding-bottom: .4rem; border-bottom: 1px solid var(--bs-border-color); }
+    h3 { margin-top: 3rem; }
+    h4 { margin-top: 2rem; }
+    /* 제목이 바로 이어질 때는 사이를 좁힌다 */
+    h2 + h3, h3 + h4 { margin-top: 1.25rem; }
+
+    /* 본문에 그대로 드러나는 목차 */
+    /* 목차 번호는 목록 자동 번호가 아니라 글로 적는다. 자동 번호는 하위 항목이
+       1·2·3 으로 다시 시작해서 본문의 2-1·2-2 와 어긋난다. */
+    .toc { border: 1px solid var(--bs-border-color); border-radius: .5rem; padding: 1rem 1.25rem; }
+    .toc ul { list-style: none; margin: 0; padding: 0; }
+    .toc ul ul { padding-left: 1.4rem; margin-top: .25rem; }
+    .toc li + li { margin-top: .25rem; }
+
+    /* 표는 항상 테두리를 둔다. 좁은 화면에서는 표만 가로로 스크롤한다. */
+    table { --bs-table-border-color: var(--bs-border-color); }
+    th { white-space: nowrap; }
+    td code, th code { white-space: normal; }
+
+    /* 인증서 표는 고정 레이아웃으로 둔다. 자동 레이아웃이면 SHA-256 지문 길이만큼
+       열이 넓어져서 줄바꿈이 걸리지 않고 표가 가로로 잘려 보인다.
+       지문은 openssl 출력을 그대로 붙여 넣는 값이라 <wbr> 를 끼워 넣지 않는다.
+       대신 어디서든 줄바꿈을 허용한다 — 옥텟 중간에서 끊길 수 있지만 값이 다
+       보이는 쪽이 낫다. */
+    .cert-table { table-layout: fixed; }
+    .cert-table th { width: 9rem; white-space: normal; }
+    @media (max-width: 30rem) { .cert-table th { width: 6.5rem; } }
+    .fingerprint { font-size: .8rem; line-height: 1.5; word-break: normal; overflow-wrap: anywhere; }
+
+    details { border: 1px solid var(--bs-border-color); border-radius: .5rem; margin-top: .75rem; }
+    details > summary { cursor: pointer; padding: .7rem 1rem; font-weight: 600; }
+    details[open] > summary { border-bottom: 1px solid var(--bs-border-color); }
+    details > div { padding: 1rem 1rem .25rem; }
+
+    footer { border-top: 1px solid var(--bs-border-color); margin-top: 3rem; }
+    .edurkr-notice { font-size: 0.9375rem; line-height: 1.7; color: var(--bs-secondary-color); }
+    .edurkr-notice a { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+  <div class="container wrap">
+    <a class="navbar-brand d-flex align-items-center gap-2 py-1" href="./">
+      <img class="brand-logo" src="../assets/images/eduroam-logo.svg" alt="eduroam" width="90" height="35">
+      <span class="brand-sep" aria-hidden="true"></span>
+      <img class="brand-logo-inst" src="../assets/images/logo.png" alt="Example Research Institute" width="1092" height="320">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sitenav"
+            aria-controls="sitenav" aria-expanded="false" aria-label="Open menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="sitenav">
+      <ul class="navbar-nav ms-auto gap-lg-2 small">
+        <li class="nav-item"><a class="nav-link" href="#intro"><i class="fa-solid fa-circle-info fa-fw" aria-hidden="true"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#howto"><i class="fa-solid fa-wifi fa-fw" aria-hidden="true"></i> How to use</a></li>
+        <li class="nav-item"><a class="nav-link" href="#area"><i class="fa-solid fa-map-location-dot fa-fw" aria-hidden="true"></i> Service Area</a></li>
+        <li class="nav-item"><a class="nav-link" href="#policy"><i class="fa-solid fa-shield-halved fa-fw" aria-hidden="true"></i> Security policy</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><i class="fa-solid fa-envelope fa-fw" aria-hidden="true"></i> Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="../" lang="ko" hreflang="ko">🇰🇷 Ko</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container wrap py-4">
+
+  <h1>eduroam at Example Research Institute</h1>
+
+  <p class="mb-4"><a href="./" aria-current="page">🇺🇸 English</a> · <a href="../" lang="ko" hreflang="ko">🇰🇷 한국어</a></p>
+
+  <nav class="toc mb-5" aria-label="Contents">
+    <ul>
+      <li><a href="#intro">1. About the service</a></li>
+      <li><a href="#howto">2. How to use</a>
+        <ul>
+          <li><a href="#visitor">2.1. Visitors</a></li>
+          <li><a href="#member">2.2. Members</a></li>
+        </ul>
+      </li>
+      <li><a href="#area">3. Service Area</a>
+        <ul>
+          <li><a href="#onsite">3.1. On-site coverage</a></li>
+          <li><a href="#coverage">3.2. Coverage in Korea and abroad</a></li>
+        </ul>
+      </li>
+      <li><a href="#policy">4. Security policy</a></li>
+      <li><a href="#contact">5. Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="intro">
+    <h2>1. About the service</h2>
+    <p><a href="https://eduroam.org">eduroam (education roaming)</a> is a Wi-Fi authentication roaming service operated by universities and research institutions worldwide. Members of a participating institution connect at any other participating site using the account issued by their own institution, without applying for a guest account.</p>
+    <p>Example Research Institute is a participating institution of eduroam Korea and provides the SSID <code>eduroam</code>. Once a device is configured, it works at every eduroam site in Korea and abroad without further changes.</p>
+    <p>Authentication is performed by <strong>the authentication server of your home institution</strong>, not by the site you are visiting. Your credentials are therefore never passed to the visited institution, which receives only the result of the authentication.</p>
+  </section>
+
+  <section id="howto">
+    <h2>2. How to use</h2>
+
+    <h3 id="visitor">2.1. Visitors</h3>
+    <p>This applies to members of another eduroam participating institution who are visiting Example Research Institute.</p>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <tbody>
+          <tr>
+            <th scope="row">Who</th>
+            <td>Members of eduroam participating institutions</td>
+          </tr>
+          <tr>
+            <th scope="row">How</th>
+            <td>
+              <ol class="mb-0 ps-3">
+                <li>Select the network name (SSID) <code>eduroam</code> from the Wi-Fi list.</li>
+                <li>Enter your home institution account in the form <code>username@your-institution-domain</code>. The domain part is required.</li>
+                <li>Once configured, the same settings work at every eduroam site worldwide, including Example Research Institute.</li>
+              </ol>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Support</th>
+            <td>The Wi-Fi support desk of your home institution</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 id="member">2.2. Members</h3>
+    <p>Members of Example Research Institute sign in with their institution account in the form <code>username@example.re.kr</code>. Configure the device with the following values.</p>
+    <h4>Connection details</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <tbody>
+          <tr><th scope="row">Network (SSID)</th><td><code>eduroam</code></td></tr>
+          <tr><th scope="row">Security</th><td>WPA2/WPA3 Enterprise</td></tr>
+          <tr><th scope="row">EAP method</th><td>PEAP</td></tr>
+          <tr><th scope="row">Phase 2</th><td>MSCHAPv2</td></tr>
+          <tr><th scope="row">CA certificate</th><td><a href="../assets/certs/ca.pem" download>Institution CA certificate</a> or system certificates</td></tr>
+          <tr><th scope="row">Domain</th><td><code>rad.eduroam.example.re.kr</code></td></tr>
+          <tr><th scope="row">Identity</th><td><code>username@example.re.kr</code></td></tr>
+          <tr><th scope="row">Anonymous identity</th><td><code>anonymous@example.re.kr</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Certificate details</h4>
+    <p class="text-body-secondary">Check that the certificate shown on first connection matches the values below. If it does not match, do not connect and report it to the contact below.</p>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle cert-table">
+        <tbody>
+          <tr>
+            <th scope="row">CA certificate</th>
+            <td>Example Research Institute eduroam Root CA<br>Valid 2026-09-28 to 2036-09-25 · <a href="../assets/certs/ca.pem" download>Download</a></td>
+          </tr>
+          <tr>
+            <th scope="row">CA SHA-256</th>
+            <td><code class="fingerprint">96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Server certificate</th>
+            <td>rad.eduroam.example.re.kr<br>Valid 2026-09-28 to 2028-09-27 · <a href="../assets/certs/radius.pem" download>Download</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Server SHA-256</th>
+            <td><code class="fingerprint">F8:14:6B:FA:ED:C6:60:0A:D1:9A:F6:EB:92:E7:26:C1:26:D4:99:FB:6A:4B:D6:AE:D6:2C:39:C1:D5:C0:DA:EC</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h4>Setup by operating system</h4>
+    <details>
+      <summary>Windows</summary>
+      <div>
+        <ol>
+          <li>Select <strong>eduroam</strong> from the Wi-Fi list in the taskbar and connect.</li>
+          <li>Enter <code>username@example.re.kr</code> and your password.</li>
+          <li>When the certificate prompt appears, confirm that the server name is <code>rad.eduroam.example.re.kr</code> and continue.</li>
+        </ol>
+      </div>
+    </details>
+    <details>
+      <summary>macOS, iOS, iPadOS</summary>
+      <div>
+        <ol>
+          <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
+          <li>Enter <code>username@example.re.kr</code> and your password.</li>
+          <li>On the certificate screen, confirm the name is <code>rad.eduroam.example.re.kr</code> and choose <strong>Trust</strong>.</li>
+        </ol>
+      </div>
+    </details>
+    <details>
+      <summary>Android</summary>
+      <div>
+        <ol>
+          <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
+          <li>Set EAP method to <strong>PEAP</strong> and phase 2 authentication to <strong>MSCHAPV2</strong>.</li>
+          <li>Set CA certificate to <strong>Use system certificates</strong> and enter <code>rad.eduroam.example.re.kr</code> as the domain.</li>
+          <li>Enter <code>username@example.re.kr</code> as the identity, <code>anonymous@example.re.kr</code> as the anonymous identity, and your password.</li>
+        </ol>
+        <p class="text-body-secondary">⚠️ On Android 11 and later the connection fails if the domain field is left empty.</p>
+      </div>
+    </details>
+
+
+
+  <section id="area">
+    <h2>3. Service Area</h2>
+
+    <h3 id="onsite">3.1. On-site coverage</h3>
+      <p>These are the areas where eduroam is available at Example Research Institute. Coverage may not be available in buildings that are not listed.</p>
+      <!-- 기관의 실제 설치 현황으로 바꾸세요. 행은 필요한 만큼 늘리거나 줄입니다. -->
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <thead>
+            <tr><th scope="col">Building</th><th scope="col">Covered areas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Main Building</td><td>All floors, including the auditorium and meeting rooms</td></tr>
+            <tr><td>Research Building</td><td>Corridors and seminar rooms, floors 1&ndash;5</td></tr>
+            <tr><td>Library</td><td>All floors</td></tr>
+            <tr><td>Guest House</td><td>Lobby and first-floor lounge</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-body-secondary">If you find a location without coverage, please let the contact below know.</p>
+
+    <h3 id="coverage">3.2. Coverage in Korea and abroad</h3>
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <tbody>
+          <tr>
+            <th scope="row">Korea</th>
+            <td>Participating institutions are listed on the <a href="https://eduroam.kreonet.net">official eduroam Korea website</a>.</td>
+          </tr>
+          <tr>
+            <th scope="row">Other countries</th>
+            <td>See <a href="https://eduroam.org/where/">eduroam.org</a> for coverage by country.</td>
+          </tr>
+          <tr>
+            <th scope="row">Map</th>
+            <td>The <a href="https://eduroam.org/eduroam-companion-app/">eduroam Companion</a> app shows nearby locations.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="policy">
+    <h2>4. Security policy</h2>
+    <p>When using eduroam at Example Research Institute you must comply with our information security policy. When visiting another institution, the policy of that institution applies.</p>
+
+    <h3>Service restrictions</h3>
+    <ul>
+      <li>Internet bandwidth on the Example Research Institute eduroam service is limited.</li>
+      <li>Certain management ports are blocked for security reasons, including ports used for remote access, file sharing and mail submission.</li>
+      <li>If a blocked port is required for your work, please request an exception through the contact below.</li>
+    </ul>
+
+    <h3>Account use</h3>
+    <ul>
+      <li>Accounts are for the sole use of the account holder and must not be transferred or shared.</li>
+      <li>If you believe your account has been compromised, change the password immediately and notify the contact below.</li>
+      <li>The account holder is responsible for any incident arising from shared use of the account.</li>
+    </ul>
+
+    <h3>Prohibited activity and enforcement</h3>
+    <p>Where the following activity is identified, access is blocked without prior notice. Depending on the case, the user's home institution is notified and the matter is handled under the applicable laws of the Republic of Korea.</p>
+    <ul>
+      <li>Transmission of material that infringes copyright or other rights of third parties</li>
+      <li>Unauthorised access to information networks, vulnerability scanning, and denial-of-service attacks</li>
+      <li>Distribution of malware and sending of unsolicited bulk mail</li>
+      <li>Distribution of unlawful information and other activity in breach of applicable law</li>
+      <li>Any activity that disrupts the normal operation of the network</li>
+    </ul>
+
+    <h3>Connection logs</h3>
+    <p>eduroam records connection logs in order to perform authentication. Logs are retained by both the home institution and the visited institution, and are used only for fault handling and security incident response. Retention periods and handling are governed by the privacy policy of each institution.</p>
+  </section>
+
+  <section id="contact">
+    <h2>5. Contact</h2>
+    <p>Example Research Institute IT Team<br>
+      <a href="mailto:helpdesk@example.re.kr">helpdesk@example.re.kr</a> · <a href="tel:+82-42-000-0000">+82-42-000-0000</a></p>
+    <p>⚠️ When contacting us, please include the device type, operating system version, and the place and time of the attempted connection.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container wrap py-4">
+    <!-- BEGIN eduroam-KR notice (en): 문구와 링크를 수정하지 마세요. 기관명·기관 URL·RO 구절만 바꿉니다. (CLAUDE.md 참고) -->
+    <p class="edurkr-notice" lang="en">Example Research Institute is a participating institution of eduroam Korea and, in cooperation with NRO<span class="text-body-secondary">(National Roaming Operator)</span> - KISTI<span class="text-body-secondary">(Korea Institute of Science and Technology Information)</span>/KREONET<span class="text-body-secondary">(Korea Research Environment Open NETwork)</span>, and RO<span class="text-body-secondary">(Roaming Operator)</span> - KREN<span class="text-body-secondary">(KoRea Education Network)</span>, provides domestic and international eduroam wireless authentication to its members and visitors. The eduroam service in Korea is operated by KISTI KREONET under a 2012 agreement with GÉANT, the operator of global eduroam, and KISTI KREONET holds the rights to the eduroam trademark in Korea (<a href="https://doi.org/10.8080/4020150095410">Korean Trademark Application No. 40-2015-0095410</a>). The official eduroam Korea website is <a href="https://eduroam.kreonet.net">eduroam.kreonet.net</a>. eduroam (education roaming) is a global Wi-Fi authentication roaming service that originated in 2002 within TERENA (now GÉANT), the association of European research networks, and the eduroam logo and eduroam® are <a href="https://eduroam.org/eduroam-trademark-information/">registered trademarks of the GÉANT Association</a>.</p>
+    <!-- END eduroam-KR notice (en) -->
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
