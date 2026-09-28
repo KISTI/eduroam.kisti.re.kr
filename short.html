@@ -34,14 +34,16 @@
     <tr><th>익명 ID</th><td><code>anonymous@example.re.kr</code></td></tr>
   </tbody>
 </table>
-<p>최초 접속 시 표시되는 서버 인증서가 아래와 일치하는지 확인합니다. 일치하지 않으면 연결하지 말고 문의처로 알려 주시기 바랍니다.</p>
+<p>최초 접속 시 표시되는 서버 인증서가 아래와 일치하는지 확인합니다. 운영체제에 따라 SHA-256 또는 SHA-1 중 한쪽만 보여 주므로 화면에 나온 쪽을 대조하면 됩니다. 일치하지 않으면 연결하지 말고 문의처로 알려 주시기 바랍니다.</p>
 <p><span style="color: red;"><strong>CA 인증서를 설치하지 않거나 인증서 지문을 확인하지 않고 접속하지 마십시오.</strong> 확인을 건너뛰면 <strong>eduroam</strong>이라는 같은 이름으로 위장한 가짜 접속점에 접속할 수 있고, 그 경우 입력한 아이디와 비밀번호가 공격자에게 그대로 넘어갑니다. 확인 없이 접속하는 것에 대한 책임은 이용자 본인에게 있습니다.</span></p>
 <table border="1">
   <tbody>
     <tr><th>CA 인증서</th><td>Example Research Institute eduroam Root CA<br>유효기간 2026-09-28 ~ 2036-09-25</td></tr>
     <tr><th>CA SHA-256</th><td><code>96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C</code></td></tr>
+    <tr><th>CA SHA-1</th><td><code>83:70:D4:FE:1B:18:A8:8A:1C:2C:64:5A:24:47:3F:D9:67:5A:57:05</code></td></tr>
     <tr><th>서버 인증서</th><td>rad.eduroam.example.re.kr<br>유효기간 2026-09-28 ~ 2028-09-27</td></tr>
     <tr><th>서버 SHA-256</th><td><code>F8:14:6B:FA:ED:C6:60:0A:D1:9A:F6:EB:92:E7:26:C1:26:D4:99:FB:6A:4B:D6:AE:D6:2C:39:C1:D5:C0:DA:EC</code></td></tr>
+    <tr><th>서버 SHA-1</th><td><code>A8:26:01:64:C6:90:EE:00:16:C4:EE:7C:10:2F:2C:1E:46:82:E3:42</code></td></tr>
   </tbody>
 </table>
 <p>다른 기관에서 방문한 분은 소속 기관 계정(<code>아이디@소속기관도메인</code>)으로 접속합니다.</p>

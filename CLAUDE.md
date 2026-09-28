@@ -61,7 +61,10 @@ diff <(sed -n '/BEGIN eduroam-KR notice:/,/END eduroam-KR notice -->/p' index.ht
      <(sed -n '/BEGIN eduroam-KR notice:/,/END eduroam-KR notice -->/p' short.html | sed 's/^ *//')
 
 # 표시된 인증서 값이 실제 파일과 맞는지
-openssl x509 -in assets/certs/ca.pem.crt -noout -subject -dates -fingerprint -sha256
-openssl x509 -in assets/certs/server.pem -noout -subject -dates -fingerprint -sha256
+for f in assets/certs/ca.pem.crt assets/certs/server.pem; do
+  openssl x509 -in "$f" -noout -subject -dates
+  openssl x509 -in "$f" -noout -fingerprint -sha256
+  openssl x509 -in "$f" -noout -fingerprint -sha1
+done
 ```
 

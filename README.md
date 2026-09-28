@@ -58,10 +58,19 @@ assets/certs/server.pem    RADIUS 서버 인증서 (지문 대조·확인용)
 
 인증서 지문은 다음 명령으로 확인하고, html 파일 본문에 갱신합니다.
 
+운영체제마다 보여 주는 지문이 다릅니다. Windows 연결 창은 SHA-1, macOS·iOS 인증서 화면은 SHA-256 을 씁니다. 이용자가 어느 화면을 보든 대조할 수 있도록 **두 값을 모두 싣습니다.**
+
 ```sh
 openssl x509 -in assets/certs/ca.pem.crt -noout -subject -dates -fingerprint -sha256
+openssl x509 -in assets/certs/ca.pem.crt -noout -fingerprint -sha1
+
 openssl x509 -in assets/certs/server.pem -noout -subject -dates -fingerprint -sha256
+openssl x509 -in assets/certs/server.pem -noout -fingerprint -sha1
 ```
+
+한 번의 호출로 두 해시를 함께 뽑을 수는 없습니다. `-fingerprint -sha256 -fingerprint -sha1` 은 `Multiple digest or unknown options` 로 거부됩니다.
+
+MD5 는 싣지 않습니다. 충돌 공격이 실증된 해시라 인증서 확인 수단으로 쓰면 안 됩니다.
 
 다음은 예제 인증서의 정보입니다. 인증서 이름은 CN(CommonName) 입니다. RADIUS 서버 인증서의 CN은 기관 DNS 서버에 등록되지 않아도 무방합니다.
 
@@ -72,11 +81,17 @@ notBefore=Sep 28 03:55:57 2026 GMT
 notAfter=Sep 25 03:55:57 2036 GMT
 sha256 Fingerprint=96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C
 
+# openssl x509 -in assets/certs/ca.pem.crt -noout -fingerprint -sha1
+sha1 Fingerprint=83:70:D4:FE:1B:18:A8:8A:1C:2C:64:5A:24:47:3F:D9:67:5A:57:05
+
 # openssl x509 -in assets/certs/server.pem -noout -subject -dates -fingerprint -sha256
 subject=C=KR, ST=Daejeon, O=Example Research Institute, CN=rad.eduroam.example.re.kr
 notBefore=Sep 28 03:55:57 2026 GMT
 notAfter=Sep 27 03:55:57 2028 GMT
 sha256 Fingerprint=F8:14:6B:FA:ED:C6:60:0A:D1:9A:F6:EB:92:E7:26:C1:26:D4:99:FB:6A:4B:D6:AE:D6:2C:39:C1:D5:C0:DA:EC
+
+# openssl x509 -in assets/certs/server.pem -noout -fingerprint -sha1
+sha1 Fingerprint=A8:26:01:64:C6:90:EE:00:16:C4:EE:7C:10:2F:2C:1E:46:82:E3:42
 ```
 
 

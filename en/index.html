@@ -251,7 +251,7 @@
     </div>
 
     <h4>Certificate details</h4>
-    <p class="text-body-secondary">Check that the certificate shown on first connection matches the values below. If it does not match, do not connect and report it to the contact below.</p>
+    <p class="text-body-secondary">Check that the certificate shown on first connection matches the values below. Depending on the operating system only one of SHA-256 or SHA-1 is shown, so compare whichever appears on screen. The Windows connection dialog shows SHA-1. If it does not match, do not connect and report it to the contact below.</p>
     <div class="alert alert-danger" role="alert">
       <strong>Do not connect without installing the CA certificate and checking the certificate fingerprint.</strong>
       If you skip these checks you may connect to a rogue access point broadcasting the same name,
@@ -270,12 +270,20 @@
             <td><code class="fingerprint">96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C</code></td>
           </tr>
           <tr>
+            <th scope="row">CA SHA-1</th>
+            <td><code class="fingerprint">83:70:D4:FE:1B:18:A8:8A:1C:2C:64:5A:24:47:3F:D9:67:5A:57:05</code></td>
+          </tr>
+          <tr>
             <th scope="row">Server certificate</th>
             <td>rad.eduroam.example.re.kr<br>Valid 2026-09-28 to 2028-09-27 · <a href="../assets/certs/server.pem" download>Download</a></td>
           </tr>
           <tr>
             <th scope="row">Server SHA-256</th>
             <td><code class="fingerprint">F8:14:6B:FA:ED:C6:60:0A:D1:9A:F6:EB:92:E7:26:C1:26:D4:99:FB:6A:4B:D6:AE:D6:2C:39:C1:D5:C0:DA:EC</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Server SHA-1</th>
+            <td><code class="fingerprint">A8:26:01:64:C6:90:EE:00:16:C4:EE:7C:10:2F:2C:1E:46:82:E3:42</code></td>
           </tr>
         </tbody>
       </table>
