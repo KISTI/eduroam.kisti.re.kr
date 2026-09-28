@@ -275,6 +275,7 @@
       <summary>Windows</summary>
       <div>
         <ol>
+          <li>Download and install the <a href="../assets/certs/ca.pem" download>institution CA certificate</a>. Double-click the file, choose <strong>Install Certificate</strong> → store location <strong>Current User</strong> → <strong>Place all certificates in the following store</strong> → <strong>Trusted Root Certification Authorities</strong>. If the file does not open, rename it to <code>.crt</code> and try again.</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list in the taskbar and connect.</li>
           <li>Enter <code>username@example.re.kr</code> and your password.</li>
           <li>When the certificate prompt appears, choose <strong>Show certificate details</strong> and confirm that the certificate name is <code>rad.eduroam.example.re.kr</code> and that the thumbprint matches the value in <strong>Certificate details</strong> above, then continue.</li>
@@ -285,6 +286,8 @@
       <summary>macOS, iOS, iPadOS</summary>
       <div>
         <ol>
+          <li>On macOS, download the <a href="../assets/certs/ca.pem" download>institution CA certificate</a> and double-click it to add it to the <strong>login</strong> keychain in <strong>Keychain Access</strong>. Double-click the added certificate, expand <strong>Trust</strong> and set <strong>When using this certificate</strong> to <strong>Always Trust</strong>. You will be asked for an administrator password.</li>
+          <li>On iOS and iPadOS, download the certificate in Safari, install the profile under <strong>Settings → General → VPN &amp; Device Management</strong>, then enable it under <strong>Settings → General → About → Certificate Trust Settings</strong>. Without this last step the certificate is not trusted.</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
           <li>Enter <code>username@example.re.kr</code> and your password.</li>
           <li>On the certificate screen, confirm the certificate name is <code>rad.eduroam.example.re.kr</code>, open <strong>Show Details</strong> and check that the fingerprint matches the value in <strong>Certificate details</strong> above, then choose <strong>Trust</strong>.</li>
@@ -295,9 +298,10 @@
       <summary>Android</summary>
       <div>
         <ol>
+          <li>Download the <a href="../assets/certs/ca.pem" download>institution CA certificate</a> and install it under <strong>Settings → Security → Encryption &amp; credentials → Install a certificate → CA certificate</strong>. Install it even if a warning appears. Menu names differ by vendor and version (Samsung: <strong>Settings → Security and privacy → Other security settings → Install from device storage</strong>).</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
           <li>Set EAP method to <strong>PEAP</strong> and phase 2 authentication to <strong>MSCHAPV2</strong>.</li>
-          <li>Set CA certificate to <strong>Use system certificates</strong> and enter <code>rad.eduroam.example.re.kr</code> as the domain.</li>
+          <li>Set CA certificate to <strong>the institution CA certificate you installed</strong> and enter <code>rad.eduroam.example.re.kr</code> as the domain. Choose <strong>Use system certificates</strong> only if your institution uses a publicly trusted certificate.</li>
           <li>Enter <code>username@example.re.kr</code> as the identity, <code>anonymous@example.re.kr</code> as the anonymous identity, and your password.</li>
         </ol>
         <p class="text-body-secondary">⚠️ On Android 11 and later the connection fails if the domain field is left empty. Android does not show a certificate prompt; it validates the server automatically against the CA certificate and domain you entered, so entering those two values correctly is the certificate check.</p>
