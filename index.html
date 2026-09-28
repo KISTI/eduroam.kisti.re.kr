@@ -277,7 +277,7 @@
         <ol>
           <li>작업 표시줄의 Wi-Fi 목록에서 <strong>eduroam</strong>을 선택하고 연결합니다.</li>
           <li><code>아이디@example.re.kr</code>과 비밀번호를 입력합니다.</li>
-          <li>인증서 확인 창이 표시되면 서버 이름이 <code>rad.eduroam.example.re.kr</code>인지 확인한 뒤 연결합니다.</li>
+          <li>인증서 확인 창이 표시되면 <strong>인증서 세부 정보 표시</strong>를 눌러, 인증서 이름이 <code>rad.eduroam.example.re.kr</code>인지와 지문이 위 <strong>인증서 정보</strong>의 값과 같은지 확인한 뒤 연결합니다.</li>
         </ol>
       </div>
     </details>
@@ -287,7 +287,7 @@
         <ol>
           <li>Wi-Fi 목록에서 <strong>eduroam</strong>을 선택합니다.</li>
           <li><code>아이디@example.re.kr</code>과 비밀번호를 입력합니다.</li>
-          <li>인증서 화면에서 이름이 <code>rad.eduroam.example.re.kr</code>인지 확인한 뒤 <strong>신뢰</strong>를 선택합니다.</li>
+          <li>인증서 화면에서 인증서 이름이 <code>rad.eduroam.example.re.kr</code>인지 확인하고, <strong>세부 사항 보기</strong>에서 지문이 위 <strong>인증서 정보</strong>의 값과 같은지 확인한 뒤 <strong>신뢰</strong>를 선택합니다.</li>
         </ol>
       </div>
     </details>
@@ -300,7 +300,7 @@
           <li>CA 인증서는 <strong>시스템 인증서 사용</strong>을 선택하고, 도메인에 <code>rad.eduroam.example.re.kr</code>을 입력합니다.</li>
           <li>ID에 <code>아이디@example.re.kr</code>, 익명 ID에 <code>anonymous@example.re.kr</code>을 입력하고 비밀번호를 입력합니다.</li>
         </ol>
-        <p class="text-body-secondary">⚠️ Android 11 이상에서는 도메인을 입력하지 않으면 연결되지 않습니다.</p>
+        <p class="text-body-secondary">⚠️ Android 11 이상에서는 도메인을 입력하지 않으면 연결되지 않습니다. Android는 인증서 확인 창을 띄우지 않고, 지정한 CA 인증서와 도메인으로 서버를 자동 검증합니다. 두 값을 정확히 넣는 것이 곧 인증서 확인입니다.</p>
       </div>
     </details>
 
