@@ -32,7 +32,7 @@
 | `assets/images/logo.png` | 기관 로고 (머리글에 eduroam 로고와 나란히 표시) |
 | `예제연구소`, `Example Research Institute` | 기관명 (국문, 영문) |
 | `example.re.kr` | RADIUS realm (`아이디@realm`, `anonymous@realm`) |
-| `rad.eduroam.example.re.kr` | RADIUS 서버 인증서 이름(도메인) |
+| `rad.eduroam.example.re.kr` | RADIUS 서버 인증서의 CN (DNS 등록 불필요, 아래 참고) |
 | `eduroam-kr.github.io/site-template` | 이 사이트 주소 (`canonical`, `og:url`, `hreflang`) |
 | `정보통신팀`, `IT Team`, `helpdesk@example.re.kr`, `042-000-0000`, `+82-42-000-0000` | 문의처 |
 | 인증서 CN, 유효기간, SHA-256 | `assets/certs/`의 파일과 일치시킴. `short.html`에도 같은 값이 들어갑니다 |
@@ -59,6 +59,22 @@ assets/certs/radius.pem    RADIUS 서버 인증서
 ```sh
 openssl x509 -in assets/certs/ca.pem -noout -subject -dates -fingerprint -sha256
 openssl x509 -in assets/certs/radius.pem -noout -subject -dates -fingerprint -sha256
+```
+
+다음은 예제 인증서의 정보입니다. 인증서 이름은 CN(CommonName) 입니다. RADIUS 서버 인증서의 CN은 기관 DNS 서버에 등록되지 않아도 무방합니다.
+
+```
+# openssl x509 -in assets/certs/ca.pem -noout -subject -dates -fingerprint -sha256
+subject=C=KR, ST=Daejeon, L=Daejeon, O=Example Research Institute, CN=Example Research Institute eduroam Root CA
+notBefore=Sep 28 03:55:57 2026 GMT
+notAfter=Sep 25 03:55:57 2036 GMT
+sha256 Fingerprint=96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C
+
+# openssl x509 -in assets/certs/radius.pem -noout -subject -dates -fingerprint -sha256
+subject=C=KR, ST=Daejeon, O=Example Research Institute, CN=rad.eduroam.example.re.kr
+notBefore=Sep 28 03:55:57 2026 GMT
+notAfter=Sep 27 03:55:57 2028 GMT
+sha256 Fingerprint=F8:14:6B:FA:ED:C6:60:0A:D1:9A:F6:EB:92:E7:26:C1:26:D4:99:FB:6A:4B:D6:AE:D6:2C:39:C1:D5:C0:DA:EC
 ```
 
 
