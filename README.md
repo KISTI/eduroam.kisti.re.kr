@@ -50,27 +50,29 @@
 인증서는 다음 경로에 올립니다.
 
 ```
-assets/certs/ca.pem        기관 CA 인증서
-assets/certs/radius.pem    RADIUS 서버 인증서
+assets/certs/ca.pem.crt    기관 CA 인증서 (이용자가 내려받아 설치)
+assets/certs/server.pem    RADIUS 서버 인증서 (지문 대조·확인용)
 ```
+
+두 파일 모두 PEM 형식입니다. CA 인증서만 `.crt` 확장자를 쓰는데, Windows 가 `.pem` 을 인증서 파일로 연결해 두지 않아 두 번 눌러도 설치 창이 뜨지 않기 때문입니다. 서버 인증서는 설치하는 파일이 아니라 지문을 대조하는 참고 자료이므로 `.pem` 으로 둡니다 — `.crt` 로 두면 이용자가 설치 창을 보고 루트 인증서로 잘못 설치할 수 있습니다.
 
 인증서 지문은 다음 명령으로 확인하고, html 파일 본문에 갱신합니다.
 
 ```sh
-openssl x509 -in assets/certs/ca.pem -noout -subject -dates -fingerprint -sha256
-openssl x509 -in assets/certs/radius.pem -noout -subject -dates -fingerprint -sha256
+openssl x509 -in assets/certs/ca.pem.crt -noout -subject -dates -fingerprint -sha256
+openssl x509 -in assets/certs/server.pem -noout -subject -dates -fingerprint -sha256
 ```
 
 다음은 예제 인증서의 정보입니다. 인증서 이름은 CN(CommonName) 입니다. RADIUS 서버 인증서의 CN은 기관 DNS 서버에 등록되지 않아도 무방합니다.
 
 ```
-# openssl x509 -in assets/certs/ca.pem -noout -subject -dates -fingerprint -sha256
+# openssl x509 -in assets/certs/ca.pem.crt -noout -subject -dates -fingerprint -sha256
 subject=C=KR, ST=Daejeon, L=Daejeon, O=Example Research Institute, CN=Example Research Institute eduroam Root CA
 notBefore=Sep 28 03:55:57 2026 GMT
 notAfter=Sep 25 03:55:57 2036 GMT
 sha256 Fingerprint=96:6D:12:B5:33:50:17:AA:18:EC:A1:E9:EA:E3:EA:DD:88:0D:1A:B3:F8:A2:8D:30:68:3F:1D:15:DC:F1:A6:6C
 
-# openssl x509 -in assets/certs/radius.pem -noout -subject -dates -fingerprint -sha256
+# openssl x509 -in assets/certs/server.pem -noout -subject -dates -fingerprint -sha256
 subject=C=KR, ST=Daejeon, O=Example Research Institute, CN=rad.eduroam.example.re.kr
 notBefore=Sep 28 03:55:57 2026 GMT
 notAfter=Sep 27 03:55:57 2028 GMT

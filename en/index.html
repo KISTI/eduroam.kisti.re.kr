@@ -242,7 +242,7 @@
           <tr><th scope="row">Security</th><td>WPA2/WPA3 Enterprise</td></tr>
           <tr><th scope="row">EAP method</th><td>PEAP</td></tr>
           <tr><th scope="row">Phase 2</th><td>MSCHAPv2</td></tr>
-          <tr><th scope="row">CA certificate</th><td><a href="../assets/certs/ca.pem" download>Institution CA certificate</a> or system certificates</td></tr>
+          <tr><th scope="row">CA certificate</th><td><a href="../assets/certs/ca.pem.crt" download>Institution CA certificate</a> or system certificates</td></tr>
           <tr><th scope="row">Domain</th><td><code>rad.eduroam.example.re.kr</code></td></tr>
           <tr><th scope="row">Identity</th><td><code>username@example.re.kr</code></td></tr>
           <tr><th scope="row">Anonymous identity</th><td><code>anonymous@example.re.kr</code></td></tr>
@@ -263,7 +263,7 @@
         <tbody>
           <tr>
             <th scope="row">CA certificate</th>
-            <td>Example Research Institute eduroam Root CA<br>Valid 2026-09-28 to 2036-09-25 · <a href="../assets/certs/ca.pem" download>Download</a></td>
+            <td>Example Research Institute eduroam Root CA<br>Valid 2026-09-28 to 2036-09-25 · <a href="../assets/certs/ca.pem.crt" download>Download</a></td>
           </tr>
           <tr>
             <th scope="row">CA SHA-256</th>
@@ -271,7 +271,7 @@
           </tr>
           <tr>
             <th scope="row">Server certificate</th>
-            <td>rad.eduroam.example.re.kr<br>Valid 2026-09-28 to 2028-09-27 · <a href="../assets/certs/radius.pem" download>Download</a></td>
+            <td>rad.eduroam.example.re.kr<br>Valid 2026-09-28 to 2028-09-27 · <a href="../assets/certs/server.pem" download>Download</a></td>
           </tr>
           <tr>
             <th scope="row">Server SHA-256</th>
@@ -285,7 +285,7 @@
       <summary>Windows</summary>
       <div>
         <ol>
-          <li>Download and install the <a href="../assets/certs/ca.pem" download>institution CA certificate</a>. Double-click the file, choose <strong>Install Certificate</strong> → store location <strong>Current User</strong> → <strong>Place all certificates in the following store</strong> → <strong>Trusted Root Certification Authorities</strong>. If the file does not open, rename it to <code>.crt</code> and try again.</li>
+          <li>Download and install the <a href="../assets/certs/ca.pem.crt" download>institution CA certificate</a>. Double-click the file, choose <strong>Install Certificate</strong> → store location <strong>Current User</strong> → <strong>Place all certificates in the following store</strong> → <strong>Trusted Root Certification Authorities</strong>.</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list in the taskbar and connect.</li>
           <li>Enter <code>username@example.re.kr</code> and your password.</li>
           <li>When the certificate prompt appears, choose <strong>Show certificate details</strong> and confirm that the certificate name is <code>rad.eduroam.example.re.kr</code> and that the thumbprint matches the value in <strong>Certificate details</strong> above, then continue.</li>
@@ -296,7 +296,7 @@
       <summary>macOS, iOS, iPadOS</summary>
       <div>
         <ol>
-          <li>On macOS, download the <a href="../assets/certs/ca.pem" download>institution CA certificate</a> and double-click it to add it to the <strong>login</strong> keychain in <strong>Keychain Access</strong>. Double-click the added certificate, expand <strong>Trust</strong> and set <strong>When using this certificate</strong> to <strong>Always Trust</strong>. You will be asked for an administrator password.</li>
+          <li>On macOS, download the <a href="../assets/certs/ca.pem.crt" download>institution CA certificate</a> and double-click it to add it to the <strong>login</strong> keychain in <strong>Keychain Access</strong>. Double-click the added certificate, expand <strong>Trust</strong> and set <strong>When using this certificate</strong> to <strong>Always Trust</strong>. You will be asked for an administrator password.</li>
           <li>On iOS and iPadOS, download the certificate in Safari, install the profile under <strong>Settings → General → VPN &amp; Device Management</strong>, then enable it under <strong>Settings → General → About → Certificate Trust Settings</strong>. Without this last step the certificate is not trusted.</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
           <li>Enter <code>username@example.re.kr</code> and your password.</li>
@@ -308,7 +308,7 @@
       <summary>Android</summary>
       <div>
         <ol>
-          <li>Download the <a href="../assets/certs/ca.pem" download>institution CA certificate</a> and install it under <strong>Settings → Security → Encryption &amp; credentials → Install a certificate → CA certificate</strong>. Install it even if a warning appears. Menu names differ by vendor and version (Samsung: <strong>Settings → Security and privacy → Other security settings → Install from device storage</strong>).</li>
+          <li>Download the <a href="../assets/certs/ca.pem.crt" download>institution CA certificate</a> and install it under <strong>Settings → Security → Encryption &amp; credentials → Install a certificate → CA certificate</strong>. Install it even if a warning appears. Menu names differ by vendor and version (Samsung: <strong>Settings → Security and privacy → Other security settings → Install from device storage</strong>).</li>
           <li>Select <strong>eduroam</strong> from the Wi-Fi list.</li>
           <li>Set EAP method to <strong>PEAP</strong> and phase 2 authentication to <strong>MSCHAPV2</strong>.</li>
           <li>Set CA certificate to <strong>the institution CA certificate you installed</strong> and enter <code>rad.eduroam.example.re.kr</code> as the domain. Choose <strong>Use system certificates</strong> only if your institution uses a publicly trusted certificate.</li>
