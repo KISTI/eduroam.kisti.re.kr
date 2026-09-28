@@ -29,7 +29,7 @@
 
 | 예제 값 | 설명 |
 |---------|------|
-| `assets/images/logo.png` | 기관 로고 (머리글에 eduroam 로고와 나란히 표시) |
+| `assets/images/logo.svg` | 기관 로고 (머리글에 eduroam 로고와 나란히 표시) |
 | `예제연구소`, `Example Research Institute` | 기관명 (국문, 영문) |
 | `example.re.kr` | RADIUS realm (`아이디@realm`, `anonymous@realm`) |
 | `rad.eduroam.example.re.kr` | RADIUS 서버 인증서의 CN (DNS 등록 불필요, 아래 참고) |
@@ -162,7 +162,7 @@ DNS 전파 후 GitHub가 인증서를 발급하면 **Settings → Pages**에서 
 | `.nojekyll` | GitHub Pages의 Jekyll 처리를 끔 (지우지 마세요) |
 | `assets/icons/` | 파비콘 |
 | `assets/images/eduroam-logo.svg` | eduroam 로고 |
-| `assets/images/logo.png` | 기관 로고 (교체 대상) |
+| `assets/images/logo.svg` | 기관 로고 (교체 대상) |
 | `assets/certs/` | 기관 CA·RADIUS 서버 인증서 (예제 파일이 들어 있음) |
 | `CLAUDE.md` | AI 유지보수 가이드 |
 
